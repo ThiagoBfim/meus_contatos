@@ -94,7 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void updateTelefone(telefone) => contato.telefone = telefone;
 
-  void updateNome(nome) => contato.nome = nome;
+  void updateNome(nome) {
+    setState(() {
+      contato.nome = nome;
+    });
+  }
 
   TextFieldValidator emailValidator() {
     return EmailValidator(errorText: 'e-mail inválido');
