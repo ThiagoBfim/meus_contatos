@@ -9,6 +9,21 @@ part of 'contato_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ContatoModel on BaseContatoModel, Store {
+  final _$nomeAtom = Atom(name: 'BaseContatoModel.nome');
+
+  @override
+  String get nome {
+    _$nomeAtom.reportRead();
+    return super.nome;
+  }
+
+  @override
+  set nome(String value) {
+    _$nomeAtom.reportWrite(value, super.nome, () {
+      super.nome = value;
+    });
+  }
+
   final _$emailAtom = Atom(name: 'BaseContatoModel.email');
 
   @override
@@ -39,8 +54,20 @@ mixin _$ContatoModel on BaseContatoModel, Store {
   }
 
   @override
+  dynamic setNome(String nome) {
+    final _$actionInfo = _$BaseContatoModelActionController.startAction(
+        name: 'BaseContatoModel.setNome');
+    try {
+      return super.setNome(nome);
+    } finally {
+      _$BaseContatoModelActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+nome: ${nome},
 email: ${email}
     ''';
   }

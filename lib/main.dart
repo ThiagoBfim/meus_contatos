@@ -1,6 +1,7 @@
 import 'package:contato_form/contato_form.dart';
 import 'package:contato_form/contato_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,10 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(contato.nome ?? ''),
+        title: Observer(builder: (_) => Text(contato.nome ?? '')),
       ),
       body: ContatoForm(contato: contato),
     );
   }
-
 }

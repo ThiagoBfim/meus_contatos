@@ -32,13 +32,14 @@ class _ContatoFormState extends State<ContatoForm> {
           spacing: 20, // to apply margin in the main axis of the wrap
           runSpacing: 10, // to apply margin in the cross axis of the wrap
           children: <Widget>[
-            TextFormField(
-              validator: nomeValidator(),
-              onChanged: updateNome,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), labelText: "Nome"),
-              maxLength: 100,
-            ),
+            Observer(
+                builder: (_) => TextFormField(
+                      validator: nomeValidator(),
+                      onChanged: updateNome,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), labelText: "Nome"),
+                      maxLength: 100,
+                    )),
             TextFormField(
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -89,9 +90,7 @@ class _ContatoFormState extends State<ContatoForm> {
   void updateTelefone(telefone) => contato.telefone = telefone;
 
   void updateNome(nome) {
-    setState(() {
-      contato.nome = nome;
-    });
+      contato.setNome(nome);
   }
 
   TextFieldValidator emailValidator() {

@@ -5,6 +5,7 @@ part 'contato_model.g.dart';
 class ContatoModel = BaseContatoModel with _$ContatoModel;
 
 abstract class BaseContatoModel with Store {
+  @observable
   String nome;
 
   @observable
@@ -17,6 +18,11 @@ abstract class BaseContatoModel with Store {
   @action
   setEmail(String email) {
     this.email = email;
+  }
+
+  @action
+  setNome(String nome) {
+    this.nome = nome;
   }
 
   String toJson() {
