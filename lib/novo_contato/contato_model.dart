@@ -1,3 +1,4 @@
+import 'package:contato_form/model/contato_type.dart';
 import 'package:mobx/mobx.dart';
 
 part 'contato_model.g.dart';
@@ -29,5 +30,3 @@ abstract class BaseContatoModel with Store {
     return '{nome: $nome, email: $email, cpf: $cpf, telefone: $telefone, tipo: $tipo}';
   }
 }
-
-enum ContatoType { CELULAR, TRABALHO, FAVORITO, CASA }

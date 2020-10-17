@@ -1,11 +1,12 @@
 import 'package:brasil_fields/formatter/cpf_input_formatter.dart';
 import 'package:brasil_fields/formatter/telefone_input_formatter.dart';
-import 'package:contato_form/contato_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+
+import 'contato_model.dart';
 
 class ContatoForm extends StatefulWidget {
   final ContatoModel contato;

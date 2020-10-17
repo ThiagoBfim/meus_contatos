@@ -1,7 +1,6 @@
-import 'package:contato_form/contato_form.dart';
-import 'package:contato_form/contato_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+
+import 'lista_contato/list_contato_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,26 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: ListContatoPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  ContatoModel contato = new ContatoModel();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Observer(builder: (_) => Text(contato.nome ?? '')),
-      ),
-      body: ContatoForm(contato: contato),
-    );
-  }
-}
