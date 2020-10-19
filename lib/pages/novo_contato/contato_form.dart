@@ -1,5 +1,7 @@
 import 'package:brasil_fields/formatter/cpf_input_formatter.dart';
 import 'package:brasil_fields/formatter/telefone_input_formatter.dart';
+import 'package:contato_form/model/contato_type.dart';
+import 'package:contato_form/repository/contato_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -24,6 +26,11 @@ class _ContatoFormState extends State<ContatoForm> {
   _ContatoFormState(this.contato);
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
@@ -37,6 +44,7 @@ class _ContatoFormState extends State<ContatoForm> {
                 builder: (_) => TextFormField(
                       validator: nomeValidator(),
                       onChanged: updateNome,
+                      initialValue: contato.nome,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(), labelText: "Nome"),
                       maxLength: 100,
@@ -46,6 +54,7 @@ class _ContatoFormState extends State<ContatoForm> {
                 FilteringTextInputFormatter.digitsOnly,
                 TelefoneInputFormatter(),
               ],
+              initialValue: contato.telefone,
               keyboardType: TextInputType.number,
               onChanged: updateTelefone,
               decoration: InputDecoration(
@@ -53,6 +62,7 @@ class _ContatoFormState extends State<ContatoForm> {
             ),
             Observer(
                 builder: (_) => TextFormField(
+                      initialValue: contato.email,
                       validator: emailValidator(),
                       onChanged: contato.setEmail,
                       decoration: InputDecoration(
@@ -65,15 +75,36 @@ class _ContatoFormState extends State<ContatoForm> {
                 FilteringTextInputFormatter.digitsOnly,
                 CpfInputFormatter(),
               ],
+              initialValue: contato.cpf,
               onChanged: updateCpf,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   border: OutlineInputBorder(), labelText: "CPF"),
             ),
+            Observer(
+                builder: (_) => DropdownButtonFormField<ContatoType>(
+                      value: contato.tipo,
+                      decoration: InputDecoration(border: OutlineInputBorder()),
+                      items: ContatoType.values.map((ContatoType value) {
+                        return DropdownMenuItem<ContatoType>(
+                          value: value,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ContatoHelper.getIconByContatoType(value),
+                              Text(ContatoHelper.getDescription(value)),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: updateTipoContato,
+                    )),
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    print(contato.toJson());
+                    ContatoRepository().saveContato(contato.toContato());
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil("/", (_) => true);
                   }
                 },
                 child: Text('Salvar'))
@@ -88,10 +119,13 @@ class _ContatoFormState extends State<ContatoForm> {
 
   void updateCpf(cpf) => contato.cpf = cpf;
 
+  void updateTipoContato(ContatoType tipoContato) =>
+      contato.setTipo(tipoContato);
+
   void updateTelefone(telefone) => contato.telefone = telefone;
 
   void updateNome(nome) {
-      contato.setNome(nome);
+    contato.setNome(nome);
   }
 
   TextFieldValidator emailValidator() {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 enum ContatoType { CELULAR, TRABALHO, FAVORITO, CASA }
@@ -15,5 +14,9 @@ class ContatoHelper {
       case ContatoType.CASA:
         return Icon(Icons.home, color: Colors.purple[600]);
     }
+  }
+
+  static String getDescription(ContatoType tipo) {
+    return tipo.toString().replaceAll("ContatoType.", "");
   }
 }

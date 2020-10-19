@@ -39,6 +39,21 @@ mixin _$ContatoModel on BaseContatoModel, Store {
     });
   }
 
+  final _$tipoAtom = Atom(name: 'BaseContatoModel.tipo');
+
+  @override
+  ContatoType get tipo {
+    _$tipoAtom.reportRead();
+    return super.tipo;
+  }
+
+  @override
+  set tipo(ContatoType value) {
+    _$tipoAtom.reportWrite(value, super.tipo, () {
+      super.tipo = value;
+    });
+  }
+
   final _$BaseContatoModelActionController =
       ActionController(name: 'BaseContatoModel');
 
@@ -48,6 +63,17 @@ mixin _$ContatoModel on BaseContatoModel, Store {
         name: 'BaseContatoModel.setEmail');
     try {
       return super.setEmail(email);
+    } finally {
+      _$BaseContatoModelActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTipo(ContatoType tipo) {
+    final _$actionInfo = _$BaseContatoModelActionController.startAction(
+        name: 'BaseContatoModel.setTipo');
+    try {
+      return super.setTipo(tipo);
     } finally {
       _$BaseContatoModelActionController.endAction(_$actionInfo);
     }
@@ -68,7 +94,8 @@ mixin _$ContatoModel on BaseContatoModel, Store {
   String toString() {
     return '''
 nome: ${nome},
-email: ${email}
+email: ${email},
+tipo: ${tipo}
     ''';
   }
 }
