@@ -40,6 +40,9 @@ class ContatoDrawer extends StatelessWidget {
   }
 
   sendTo(BuildContext context, Widget page) {
-    Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (_) => page), ModalRoute.withName('/'));
+    Navigator.of(context).pop();
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(builder: (_) => page), ModalRoute.withName("/"));
   }
+
 }

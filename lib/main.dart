@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ListContatoPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => ListContatoPage(),
+      },
     );
   }
 }
-
