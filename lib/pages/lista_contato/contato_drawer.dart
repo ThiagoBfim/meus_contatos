@@ -1,4 +1,5 @@
 import 'package:contato_form/pages/novo_contato/new_contato_page.dart';
+import 'package:contato_form/pages/termo_uso/termo_uso_page.dart';
 import 'package:flutter/material.dart';
 
 import 'list_contato_page.dart';
@@ -32,7 +33,7 @@ class ContatoDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text('Termos de uso'),
-            onTap: () => sendTo(context, Container()),
+            onTap: () => sendTo(context, TermoUsoPage()),
           ),
         ],
       ),
