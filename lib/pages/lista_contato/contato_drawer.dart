@@ -1,6 +1,7 @@
-import 'package:contato_form/lista_contato/list_contato_page.dart';
-import 'package:contato_form/novo_contato/new_contato_page.dart';
+import 'package:contato_form/pages/novo_contato/new_contato_page.dart';
 import 'package:flutter/material.dart';
+
+import 'list_contato_page.dart';
 
 class ContatoDrawer extends StatelessWidget {
   @override

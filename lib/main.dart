@@ -1,6 +1,5 @@
+import 'package:contato_form/pages/lista_contato/list_contato_page.dart';
 import 'package:flutter/material.dart';
-
-import 'lista_contato/list_contato_page.dart';
 
 void main() {
   runApp(MyApp());
