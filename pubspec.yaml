@@ -39,7 +39,7 @@ dev_dependencies:
 
   build_runner: 1.10.3
   mobx_codegen: 1.1.1+1
-
+  flutter_phone_state: 0.5.9
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

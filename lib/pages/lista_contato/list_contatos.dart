@@ -3,6 +3,7 @@ import 'package:contato_form/pages/novo_contato/contato_model.dart';
 import 'package:contato_form/pages/novo_contato/new_contato_page.dart';
 import 'package:contato_form/repository/contato_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_state/flutter_phone_state.dart';
 
 class ListContatos extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _ListContatosState extends State<ListContatos> {
             subtitle: Text(contato.telefone),
             trailing: IconButton(
               icon: Icon(Icons.call),
-              onPressed: () => {},
+              onPressed: () => FlutterPhoneState.startPhoneCall(contato.telefone),
             ),
           );
         },
