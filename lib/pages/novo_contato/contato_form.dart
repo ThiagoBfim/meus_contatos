@@ -104,7 +104,7 @@ class _ContatoFormState extends State<ContatoForm> {
                   if (_formKey.currentState.validate()) {
                     ContatoRepository().saveContato(contato.toContato());
                     Navigator.of(context)
-                        .pushNamedAndRemoveUntil("/", (_) => true);
+                        .pushNamedAndRemoveUntil("/", (_) => false);
                   }
                 },
                 child: Text('Salvar'))
